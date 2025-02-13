@@ -1,0 +1,20 @@
+Version: 1.0
+ProjectId: 90a96542-7cea-4993-859c-ba38f236405b
+
+RestoreWorkspace: Default
+SaveWorkspace: Default
+AlwaysSaveHistory: Default
+
+EnableCodeIndexing: Yes
+UseSpacesForTab: Yes
+NumSpacesForTab: 2
+Encoding: UTF-8
+
+RnwWeave: Sweave
+LaTeX: pdfLaTeX
+
+UseNativePipeOperator: Yes
+
+PythonType: system
+PythonVersion: 3.12.4
+PythonPath: /Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12

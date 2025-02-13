@@ -1,0 +1,32 @@
+{
+  "intro_modeling.qmd": {
+    "intro_modeling.html": "45921a03"
+  },
+  "intro_modeling_completed.Rmd": {
+    "intro_modeling_completed.html": "c9be2aef"
+  },
+  "intro_modeling_starter.Rmd": {
+    "intro_modeling_starter.html": "1c728a0f"
+  },
+  "index.qmd": {
+    "index.html": "eec61ae2"
+  },
+  "basic_modeling.qmd": {
+    "basic_modeling.html": "62f373d7"
+  },
+  "presentation.qmd": {
+    "presentation.html": "8989d965"
+  },
+  "week8_completed.qmd": {
+    "week8_completed.html": "ca05a050"
+  },
+  "week10_completed.qmd": {
+    "week10_completed.html": "160ca96f"
+  },
+  "demo_c2.qmd": {
+    "demo_c2.html": "219ca64d"
+  },
+  "completed.qmd": {
+    "completed.html": "cd6c03fd"
+  }
+}

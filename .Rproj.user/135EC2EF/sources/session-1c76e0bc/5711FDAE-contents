@@ -1,0 +1,635 @@
+---
+title: "1. Introduction to Python programming"
+author: "Dr. Piccoli"
+format: live-html
+pyodide:
+  packages:
+    - numpy
+    - pandas
+    - matplotlib
+    - seaborn
+editor_options: 
+  chunk_output_type: console
+---
+
+```{=html}
+<style>
+/* Target the first tab (Demo) */
+.nav-pills .nav-item:nth-child(1) .nav-link {
+  background-color: #FFC20A; /* Yellow */
+  color: white;
+}
+
+/* Target the second tab (Example) */
+.nav-pills .nav-item:nth-child(2) .nav-link {
+  background-color: #5D3A9B; /* Purple */
+  color: white;
+}
+
+/* Target the third tab (Exercise) */
+.nav-pills .nav-item:nth-child(3) .nav-link {
+  background-color: #0C7BDC; /* Blue */
+  color: white;
+}
+
+/* Target the fourth tab (Activity) */
+.nav-pills .nav-item:nth-child(4) .nav-link {
+  background-color: #E66100; /* Orange */
+  color: white;
+}
+
+/* Target the fifth tab (Activity2) */
+.nav-pills .nav-item:nth-child(5) .nav-link {
+  background-color: #40B0A6; /* teal */
+  color: white;
+}
+
+/* Active tab styling */
+.nav-pills .nav-link.active {
+  background-color: #2E7D32; /* Customize active tab color */
+  color: white;
+}
+</style>
+```
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}} {{< include ./_extensions/r-wasm/live/_gradethis.qmd >}}
+
+# Talking with Python
+
+![Coding is fun!!!](gif/coding_is_fun.gif){width="700"}
+
+In this part of the course we will leverage the following resources:
+
+-   [Intro to Python book](https://automatetheboringstuff.com)
+
+::: {#custom-timer}
+```{r}
+#| echo: false
+library(countdown)
+countdown(
+  minutes = 5, 
+  seconds = 0, 
+  play_sound = TRUE,  # Play a sound when the timer finishes
+  warn_when = 180,    # Warn when 180 seconds are left
+  blink_colon = TRUE,
+  font_size = "1.5rem",  # Set smaller font size
+  start_immediately = FALSE,  # Start the timer automatically
+  color_background = "#f2f2f2",  # Neutral background color
+  color_border = "darkred"
+)
+```
+:::
+
+```{=html}
+<style>
+  /* Fix the custom timer div to the top-right corner */
+  #custom-timer {
+    position: fixed;    /* Ensure the timer stays fixed when scrolling */
+    top: 70px;          /* Distance from the top */
+    right: 10px;        /* Distance from the right */
+    font-size: 1rem;   /* Small font size */
+    z-index: 9999;       /* Ensure it stays on top of other elements */
+    width: 250px;        /* Set a small width for the timer */
+    text-align: center;  /* Center the text */
+  }
+</style>
+```
+Python is amazingly complex and powerful. It is also very picky about the syntax you use to communicate with it. However, Python is not intelligent. You are really just having a conversation with yourself, but using proper syntax. Python is a way for the creators of programs to express how the conversation is supposed to proceed.
+
+Programming languages like Python need to be translated. There are two types of "translator": (1) `interpreters` and (2) `compilers`.
+
+An **interpreter** reads the source code of the program as written by the programmer, parses the source code, and interprets the instructions on the fly. Python is an interpreter and when we are running Python interactively (like in this notebook), we can type a line of Python (a sentence) and Python processes it immediately and is ready for us to type another line of Python.
+
+A **compiler** needs to be handed the entire program in a file, and then it runs a process to translate the high-level source code into machine language and then the compiler puts the resulting machine language into a file for later execution.
+
+Unlike human languages, the Python vocabulary is actually pretty small. We call this "vocabulary" the "reserved words". These are words that have very special meaning to Python. When Python sees these words in a Python program, they have one and only one meaning to Python.
+
+The reserved words in the language where humans talk to Python include the following:
+
+```         
+and       del       global      not       with
+as        elif      if          or        yield
+assert    else      import      pass
+break     except    in          raise
+class     finally   is          return
+continue  for       lambda      try
+def       from      nonlocal    while
+```
+
+You will learn some fo these words later in the course. For now, remember to not use them as variable or function names.
+
+During this course you will learn how to write and execute your function but also how to use Python's built-in functions. Python has many built-in functions that are always ready to use. The first one you should learn is **`help()`**. You can use it any time you need to refresh your memory on how a particular function works. Type it in the line below and run (ask the instructor how to run a piece of code if you are not sure).
+
+```{pyodide}
+#| autorun: false
+#| startover: false
+#| min-lines: 3
+#| completion: true
+help()
+
+```
+
+As you can see, you opened an interactive help. You can type name of any function, module, etc. Until you type "quit", the help prompt will remain active, allowing you to ask more question. Yet, it will block all the other lines from running. Now ask help about **`print()`** function (type "print" in the help prompt). Then close the help prompt (type "quit" in the help prompt).
+
+Now, once you know how the print function works, tell Python to print `Hello world!` (as every true programmer should do ;-)
+
+```{pyodide}
+#| startover: false
+#| autorun: false
+#| min-lines: 3
+print("Hello world!")
+```
+
+Some of the lines in Python tell Python that you want it to remember some value for later. They do not give any visible output. Pick a name for that value to be remembered. We use the term *variable* to refer to the labels we use to refer to this stored data.
+
+```{pyodide}
+#| startover: false
+#| autorun: false
+#| min-lines: 3
+x = 10
+```
+
+You can use that variable to retrieve the value later. Instead of typing `print(10)` you can type `print([vairbale name])` (where `[variable name]` is the name you chose earlier)
+
+Try the print the value assigned to `x`
+
+```{pyodide}
+#| startover: false
+#| autorun: false
+#| min-lines: 3
+print(x)
+```
+
+Any value can be assigned to a variable. Variables can be also used in longer expressions or assigned to other variables (see the example below). Later you will see when it becomes useful.
+
+```{pyodide}
+#| startover: false
+#| autorun: false
+#| min-lines: 3
+y = x * 2
+```
+
+Now let's print `y`
+
+```{pyodide}
+#| startover: false
+#| autorun: false
+#| min-lines: 3
+print(y)
+```
+
+Later, we will talk more about the variables.
+
+## Programs
+
+Typing commands into the Python interpreter is a great way to experiment with Python's features, but it is not recommended for solving more complex problems.
+
+Normally, when we want to write a program, we use a text editor to write the Python instructions into a file, which is called a **script**. By convention, Python scripts have names that end with `.py`.
+
+To execute the script, you have to tell the Python interpreter the name of the file. Let's say we have a file called `python.py`. In a command window (or terminal), you would run a file as follows:\
+`$ python python.py`
+
+We use a special type of Python called iPython. In iPython we can use special notebooks (like the one you are reading now), which let us mix formatted text and Python code and execute Python code directly in the notebook.
+
+If you want to install Python locally on your computer, check out one of these links: [Windows](https://www.py4e.com/software-win.php) [Mac](https://www.py4e.com/software-mac.php)
+
+## What is a program?
+
+The definition of a **program** at its most basic is a sequence of Python statements that have been crafted to do something.
+
+For example, look at the following text. Look at the text and figure out the most common word and how many times it occurs.
+
+`it may help to understand human affairs to be clear that most of the great triumphs and tragedies of history are caused, not by people being fundamentally good or fundamentally bad, but by people being fundamentally people ... he rather liked people`
+
+Then imagine that you are doing this task looking at millions of lines of text. It would be quicker for you to learn Python and write a Python program to count the words than it would be to manually scan the words.
+
+Now take a look at the code below and run it. It does exactly what you were supposed to do (but faster and, probably, more accurately).
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+text = "it may help to understand human affairs to be clear that most of the great triumphs and tragedies of history are caused, not by people being fundamentally good or fundamentally bad, but by people being fundamentally people ... he rather liked people"
+counts = dict()
+
+words = text.split()
+
+for word in words:
+    counts[word] = counts.get(word, 0) + 1
+
+bigcount = None
+bigword = None
+for word, count in list(counts.items()):
+    if bigcount is None or count > bigcount:
+        bigword = word
+        bigcount = count
+
+print(bigword, bigcount)
+```
+
+You don't even need to know Python to use this program. You are the end user, you simply use the program. This is a good example of how Python and the Python language are acting as an intermediary between the end user and the programmer.
+
+## The building blocks of a program
+
+There are some low-level conceptual patterns that we use to construct programs. These constructs are not just for Python programs, they are part of every programming language from machine language up to the high-level languages.
+
+-   **input**\
+    Get data from the "outside world". This might be reading data from a file, or even some kind of sensor like a microphone or GPS. In our initial programs, our input will come from the user typing data on the keyboard.
+
+-   **output**\
+    Display the results of the program on a screen or store them in a file or perhaps write them to a device like a speaker to play music or speak text.
+
+-   **sequential execution**\
+    Perform statements one after another in the order they are encountered in the script.
+
+-   **conditional execution**\
+    Check for certain conditions and then execute or skip a sequence of statements.
+
+-   **repeated execution**\
+    Perform some set of statements repeatedly, usually with some variation.
+
+-   **reuse**\
+    Write a set of instructions once and give them a name and then reuse those instructions as needed throughout your program.
+
+# 2. Variables, expressions and statements
+
+## Values and value types
+
+A value is one of the basic things a program works with, like a letter or a number. These values belong to different types: 2 is an integer, and "Hello, World!" is a string, so called because it contains a "string" of letters.
+
+These are all types in Python:
+
+-   `int` - numeric value (e.g `1`)
+
+-   `float` - a decimal (e.g `2.5`)
+
+-   `complex` - complex numbers coposed of real part and imaginary part (e.g. `6+4j` where j represents the imaginary part)
+
+-   `bool` - Boolean value - `True` or `False`
+
+-   `str` - text value (a string of letters) (e.g. `'Hello world!'`) - always enclosed in quotation marks!
+
+-   `list` - a list of values - `[1,2,3,4]`
+
+-   `tuple` - a tuple - `(1,2,3,4)`
+
+-   `dict` - a dictionary - `{1:"one", 2:"two", 3:"three"}`
+
+To find a type of a value, you use function `type()`
+
+`type([value])`
+
+What is the data type of `"Hello world!"`?
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+type("pippo")
+
+```
+
+What is the data type of `17`?
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+type(17)
+
+```
+
+What is the data type of `3.2`?
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+type(3.2)
+
+```
+
+What is the type of `3.2` and `"3.2"`? Why are they different?
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+type("3.2")
+```
+
+What will happen if you try to print `1,000,000` in Python? What is the type of `1,000,000`?
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+type(1000000)
+
+```
+
+## Variables
+
+One of the most powerful features of a programming language is the ability to manipulate variables. A variable is a name that refers to a value. You assign a value to a variable using `=` sign:
+
+`[variable] = [value]`
+
+Assign `3.1415926535897931` to variable `pi`
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+pi = 3.1415926535897931
+print(pi)
+type(pi)
+```
+
+You can assign value of any type to a variable.
+
+Assign `'Python ROCKS!!!'` to a variable called `message`.
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+message = 'Python ROCKS!!!'
+```
+
+Notice that assignement to a variable does not produce any output. You can print the value assigned to a variable by passing variable name to the `print()` function.
+
+**Attention!!** You pass the variable name without the quotation marks. That's how we can tell variables from strings.
+
+Print `message`
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+print(message)
+```
+
+Print `pi`
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+pi = "I love pie it is yummi!!!"
+print(pi, message, pi, sep = " --------- ")
+```
+
+Now, you can check the type of the values by simply checking the type of a variable. Check the type of pi and message.
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+type(message)
+```
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+type(pi)
+```
+
+Have you noticed that the type of a variable is in fact the type of the assigned value?
+
+## Statements
+
+You have just learned the second type of statments.
+
+A **statement** is a unit of code that the Python interpreter can execute. We have seen two kinds of statements: print being an expression statement and assignment.
+
+When you type a statement in interactive mode, the interpreter executes it and displays the result, if there is one. A script usually contains a sequence of statements. If there is more than one statement, the results appear one at a time as the statements execute.
+
+Run the following code and compare it with its output:
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+print(1)
+x = 2
+print(x)
+```
+
+# Operators
+
+Operators are special symbols that represent computations like addition and multiplication.
+
+The operators `+`, `-`, `*`, `/`, and `**` perform addition, subtraction, multiplication, division, and exponentiation, as in the following examples:
+
+-   Addition
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+2+2
+```
+
+-   Subtraction
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+6-3
+```
+
+-   Multiplication
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+3*3
+```
+
+-   Division
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+10/2
+```
+
+-   Exponentiation
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+2**3
+```
+
+Try to use them all in one statement:
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+
+```
+
+You can perform operations also on variables.
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+pi = 3.1415926535897931
+sqr = 2
+print(pi * sqr)
+```
+
+This is also helpful when you want to update a variable. You simply perform an operation on the variable and assign it to the same name.
+
+Update the code below. Multiply `x` by your age.
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+x = 1
+print(x)
+x = 52 * x
+print(x)
+```
+
+**Special case!!** `//` divides two integers and truncates the result to an integer. Compare the statements below:
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+
+
+```
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+5/2
+5//2
+5.0//2.0
+```
+
+## String operations
+
+The `+` operator works with strings, but it is not addition in the mathematical sense. Instead it performs concatenation, which means joining the strings by linking them end to end.
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+first = 10
+second = 15
+print(first + second)
+```
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+first = '10'
+second = '15'
+print(first + second)
+```
+
+The `*` operator also works with strings by multiplying the content of a string by an integer.
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+first = '10'
+second = 3
+print(first * second)
+```
+
+## User input
+
+Python provides a built-in function called `input` that gets input from the keyboard. When this function is called, the program stops and waits for the user to type something. When the user presses `Return` or `Enter`, the program resumes and `input` returns what the user typed as a string.
+
+Try it yourself:
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+inp = input()
+```
+
+To print the value entered by the user, you simply print the variable it was assigned to.
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+print(inp)
+```
+
+You can pass a string to `input` to be displayed to the user before pausing for input:
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+name = input('What is your name?\n')
+name = input('What is your name?')
+```
+
+The sequence `\n` at the end of the prompt represents a newline, which is a special character that causes a line break. That's why the user's input appears below the prompt.
+
+Now you can print your name:
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+name
+```
+
+Now you can try it yourself.
+
+1.  Ask your user to type the number of books s/he read last month.
+
+2.  Assign the value to `number` variable
+
+3.  Transform `number` variable to an integer using `int()` (use `help()` if you need it)
+
+4.  Calculate the difference between the user and an average person (an average person reads 1 book a month)
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+b = input("books \n")
+b = b - 1
+b = str(b)
+print('you read ' + b + ' books than the average person')
+```
+
+**Attention!!!**\
+If you expect the user to type a numeric value and the user types something other than a string of digits, you get an error (try to type the answer as a string, e.g. `six` instead of `6`). Why does it happen?
+
+Later, we will learn how to deal with such cases.
+
+## Comments
+
+As programs get bigger and more complicated, they get more difficult to read. For this reason, it is a good idea to add notes to your programs to explain in natural language what the program is doing. These notes are called comments, and in Python they start with the \# symbol:
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+# compute the velocity in meters  per second of an object that moves 60 km/h
+
+s = 60*1000 #distance in meters
+t = 1*3600 #time in seconds
+
+#velocity formula: s/t
+
+v = s/t 
+
+print(v)
+```
+
+Everything from the \# to the end of the line is ignored; it has no effect on the program.
+
+![**On completing your first Python class!**](gif/congrats.webp){fig-align="left" width="700"}
+<div class="disclaimer">
+  <p><strong>Images and GIFs Disclaimer:</strong> Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.</p>
+</div>
+
+<style>
+.disclaimer {
+  font-size: 0.8em;
+  color: #666;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+</style>
+
+
+
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
+```

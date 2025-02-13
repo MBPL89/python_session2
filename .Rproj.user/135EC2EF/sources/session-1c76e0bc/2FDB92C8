@@ -1,0 +1,32 @@
+{
+    "id": "2FDB92C8",
+    "path": "~/Desktop/python/session2_python/completed.qmd",
+    "project_path": "completed.qmd",
+    "type": "quarto_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1737726039680.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "chunk_output_type": "console",
+        "source_window_id": "",
+        "Source": "Source",
+        "docOutlineVisible": "1",
+        "cursorPosition": "578,16",
+        "scrollLine": "573",
+        "rmdVisualModeLocation": "2:15.333333015441895",
+        "rmdVisualCollapsedChunks": ""
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1737726257,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1737726257059,
+    "read_only": false,
+    "read_only_alternatives": []
+}
