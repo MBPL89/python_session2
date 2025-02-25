@@ -39,7 +39,7 @@ sys.stdin = mock_input
 
 ```{pyodide}
 #| autorun: false
-#| startover: false
+#| startover: true
 #| min-lines: 3
 #| completion: true
 hours = float(input('Enter Hours: '))
@@ -72,7 +72,7 @@ sys.stdin = mock_input
 
 ```{pyodide}
 #| autorun: false
-#| startover: false
+#| startover: true
 #| min-lines: 3
 #| completion: true
 # Collect input data and produce error message if text is entered
@@ -134,7 +134,7 @@ sys.stdin = mock_input
 
 ```{pyodide}
 #| autorun: false
-#| startover: false
+#| startover: true
 #| min-lines: 3
 #| completion: true
 
@@ -197,7 +197,7 @@ sys.stdin = mock_input
 
 ```{pyodide}
 #| autorun: false
-#| startover: false
+#| startover: true
 #| min-lines: 3
 #| completion: true
 count = 0
@@ -229,7 +229,7 @@ sys.stdin = mock_input
 
 ```{pyodide}
 #| autorun: false
-#| startover: false
+#| startover: true
 #| min-lines: 3
 #| completion: true
 
@@ -269,7 +269,7 @@ sys.stdin = mock_input
 
 ```{pyodide}
 #| autorun: false
-#| startover: false
+#| startover: true
 #| min-lines: 3
 #| completion: true
 

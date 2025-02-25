@@ -39,7 +39,7 @@ sys.stdin = mock_input
 
 ```{pyodide}
 #| autorun: false
-#| startover: false
+#| startover: true
 #| min-lines: 3
 #| completion: true
 
@@ -66,7 +66,7 @@ sys.stdin = mock_input
 
 ```{pyodide}
 #| autorun: false
-#| startover: false
+#| startover: true
 #| min-lines: 3
 #| completion: true
 
@@ -117,7 +117,7 @@ sys.stdin = mock_input
 
 ```{pyodide}
 #| autorun: false
-#| startover: false
+#| startover: true
 #| min-lines: 3
 #| completion: true
 
@@ -160,7 +160,7 @@ sys.stdin = mock_input
 
 ```{pyodide}
 #| autorun: false
-#| startover: false
+#| startover: true
 #| min-lines: 3
 #| completion: true
 
@@ -178,7 +178,7 @@ sys.stdin = mock_input
 
 ```{pyodide}
 #| autorun: false
-#| startover: false
+#| startover: true
 #| min-lines: 3
 #| completion: true
 
@@ -196,7 +196,7 @@ sys.stdin = mock_input
 
 ```{pyodide}
 #| autorun: false
-#| startover: false
+#| startover: true
 #| min-lines: 3
 #| completion: true
 

@@ -116,7 +116,7 @@ x > y                # x is greater than y
 x < y                # x is less than y
 x >= y               # x is greater than or equal to y
 x <= y               # x is less than or equal to y
-x is y               # x is the same as y
+x is y               # x is the same as y. Only use to check if two variables are the same (not if they have the same value). Also most useful to verify if a variable is True, False or None.
 x is not y           # x is not the same as y
 ```
 
@@ -177,7 +177,9 @@ x >= 0 and y == 10
 #| startover: false
 #| min-lines: 3
 #| completion: true
-z is 8 or y == 8
+q = x >= 0 and y == 10
+print(q)
+q is not True
 ```
 
 ```{pyodide}
@@ -449,8 +451,6 @@ while True:
 print('Done!')
 ```
 
-If you try to run it, it will run forever (if you lready have, go to `Kernel` menu and select `Interrupt` -.- )
-
 However, we can still use this pattern to build a useful loops as long as we add `break` to the body of the loop. It literally breaks the loop when we have reached the exit condition.
 
 For example, the loop below will run until the user types `done` in the prompt.
@@ -458,7 +458,7 @@ For example, the loop below will run until the user types `done` in the prompt.
 ```{pyodide}
 #| autorun: false
 #| min-lines: 3
-mock_input = StringIO("...\n")
+mock_input = StringIO("...\n...\n...\n...\n")
 sys.stdin = mock_input
 ```
 
@@ -485,7 +485,7 @@ Here is an extension of the previous code that copies its input until the user t
 ```{pyodide}
 #| autorun: false
 #| min-lines: 3
-mock_input = StringIO("...\n")
+mock_input = StringIO("...\n...\n...\n...\n")
 sys.stdin = mock_input
 ```
 
