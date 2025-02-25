@@ -1,0 +1,210 @@
+---
+title: "2. Beyond the Basic. Practice: Conditional and Iterations"
+author: "Dr. Piccoli"
+format: live-html
+pyodide:
+  packages:
+    - seaborn
+editor_options: 
+  chunk_output_type: console
+---
+
+```{pyodide}
+#| autorun: true
+#| startover: false
+#| edit: false
+#| runbutton: false
+#| echo: false
+import sys
+from io import StringIO
+
+```
+
+## Conditional execution
+
+1)  Rewrite your pay computation to give the employee 1.5 times the hourly rate for hours worked above 40 hours.
+
+```{raw}
+Enter Hours: 45 
+Enter Rate: 10 
+Pay: 475.0
+```
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+mock_input = StringIO("45\n10\n")
+sys.stdin = mock_input
+```
+
+```{pyodide}
+#| autorun: false
+#| startover: false
+#| min-lines: 3
+#| completion: true
+
+
+```
+
+2)  Rewrite your pay program using `try` and `except` so that your program handles non-numeric input gracefully by printing a message and exiting the program. The following shows two executions of the program:
+
+```{raw}
+Enter Hours: 20 
+Enter Rate: nine Error, please enter numeric input
+```
+
+```{raw}
+Enter Hours: forty Error, please enter numeric input
+```
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+mock_input = StringIO("...\n")
+sys.stdin = mock_input
+```
+
+```{pyodide}
+#| autorun: false
+#| startover: false
+#| min-lines: 3
+#| completion: true
+
+
+```
+
+3)  Write a program to prompt for a score between 0.0 and 1.0. If the score is out of range, print an error message. If the score is between 0.0 and 1.0, print a grade using the following table:
+
+|Score | Grade |
+|------|-------|
+|>= 0.9|A|
+|>= 0.8|B|
+|>= 0.7|C|    
+|>= 0.6|D|
+|< 0.6|F|
+
+```{raw}
+Enter score: 0.95 
+A
+```
+
+```{raw}
+Enter score: perfect Bad score
+```
+
+```{raw}
+Enter score: 10.0 Bad score
+```
+
+```{raw}
+Enter score: 0.75 
+C
+```
+
+```{raw}
+Enter score: 0.5 
+F
+```
+
+Run the program repeatedly as shown above to test the various different values for input.
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+mock_input = StringIO("...\n")
+sys.stdin = mock_input
+```
+
+```{pyodide}
+#| autorun: false
+#| startover: false
+#| min-lines: 3
+#| completion: true
+
+
+```
+
+3)  Write a program which repeatedly reads numbers until the user enters "done". Once "done" is entered, print out the total, count, and average of the numbers. If the user enters anything other than a number, detect their mistake using try and except and print an error message and skip to the next number. If the user enters "done" without entering any number, print a proper message when giving the average.
+
+```{raw}
+Enter a number: 4 
+Enter a number: 5 
+Enter a number: bad data Invalid input 
+Enter a number: 7 
+Enter a number: done 
+Total: 16 
+Count: 3 
+5.333333333333333
+```
+
+```{raw}
+Enter a number: done 
+Total: 0 
+Count: 0 
+Count is 0. Impossible to calculate the average
+```
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+mock_input = StringIO("4\n5\n7\ndone\n")
+sys.stdin = mock_input
+```
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+mock_input = StringIO("done\n")
+sys.stdin = mock_input
+```
+
+```{pyodide}
+#| autorun: false
+#| startover: false
+#| min-lines: 3
+#| completion: true
+
+
+```
+
+4)  Now improve your score conversion program (from exercise 3) by using appropriate error catching when the user does not input a number and by using a loop to continuously accept input until the user types 'done'
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+mock_input = StringIO("...\n")
+sys.stdin = mock_input
+```
+
+```{pyodide}
+#| autorun: false
+#| startover: false
+#| min-lines: 3
+#| completion: true
+
+
+```
+
+5)  Write another program that prompts the user for numbers until the user types "done." At that point the program prints out both the maximum and minimum of the numbers (instead of the total, count, and average).
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+mock_input = StringIO("...\n")
+sys.stdin = mock_input
+```
+
+```{pyodide}
+#| autorun: false
+#| startover: false
+#| min-lines: 3
+#| completion: true
+
+
+```
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
+```

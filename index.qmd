@@ -1,12 +1,9 @@
 ---
-title: "2. Beyond the Basic [Pick the title you like]"
+title: "2. Beyond the Basic: Conditional and Iterations"
 author: "Dr. Piccoli"
 format: live-html
 pyodide:
   packages:
-    - numpy
-    - pandas
-    - matplotlib
     - seaborn
 editor_options: 
   chunk_output_type: console
@@ -51,33 +48,26 @@ editor_options:
 }
 </style>
 ```
+
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}} {{< include ./_extensions/r-wasm/live/_gradethis.qmd >}}
 
-# 3. Conditional operations
+```{pyodide}
+#| autorun: true
+#| startover: false
+#| edit: false
+#| runbutton: false
+#| echo: false
+import sys
+from io import StringIO
 
-![Coding is fun!!!](gif/coding_is_fun.gif){width="700"}
+```
+
+
+# 3. Conditional operations
 
 In this part of the course we will leverage the following resources:
 
 -   [Intro to Python book](https://automatetheboringstuff.com)
-
-::: {#custom-timer}
-```{r}
-#| echo: false
-library(countdown)
-countdown(
-  minutes = 5, 
-  seconds = 0, 
-  play_sound = TRUE,  # Play a sound when the timer finishes
-  warn_when = 180,    # Warn when 180 seconds are left
-  blink_colon = TRUE,
-  font_size = "1.5rem",  # Set smaller font size
-  start_immediately = FALSE,  # Start the timer automatically
-  color_background = "#f2f2f2",  # Neutral background color
-  color_border = "darkred"
-)
-```
-:::
 
 ```{=html}
 <style>
@@ -93,7 +83,6 @@ countdown(
   }
 </style>
 ```
-
 
 Run the expressions below and compare the outputs.
 
@@ -120,8 +109,7 @@ A boolean expression is an expression that is either true or false. True and Fal
 
 Below is the list of all the comparison operators:
 
-
-```         
+```{raw}         
 x == y               # x is equal to y
 x != y               # x is not equal to y
 x > y                # x is greater than y
@@ -132,7 +120,7 @@ x is y               # x is the same as y
 x is not y           # x is not the same as y
 ```
 
-:::callout-warning
+::: callout-warning
 Attention!!! Do not confuse `=` (assignment operator) with `==` (comparison operator)
 :::
 
@@ -145,7 +133,6 @@ x = 1
 
 ```
 
-
 ```{pyodide}
 #| autorun: false
 #| startover: false
@@ -155,7 +142,7 @@ x == 1
 
 ```
 
-## Logical operators 
+## Logical operators
 
 There are three logical operators: and, or, and not. The semantics (meaning) of these operators is similar to their meaning in English. For example,
 
@@ -201,11 +188,11 @@ z is 8 or y == 8
 not(x > y)
 ```
 
-## Conditional execution: `if` 
+## Conditional execution: `if`
 
 In order to write useful programs, we almost always need the ability to check conditions and change the behavior of the program accordingly. If the logical condition is true, then the indented statement gets executed. If the logical condition is false, the indented statement is skipped.
 
-```
+```{raw}         
 if condition is True :
     do the magic here
 ```
@@ -220,14 +207,12 @@ if 2 == 2 :
 
 ```
 
-:::callout-important
-**PAY ATTENTION TO INTENDATION!!!**   
+::: callout-important
+**PAY ATTENTION TO INTENDATION!!!**\
 Luckily Python keeps the right intendention for you but be extra careful when writing longer scripts.
 :::
 
 Print `Correct` if `y` is higher than 5
-
-
 
 ```{pyodide}
 #| autorun: false
@@ -243,7 +228,6 @@ y = 10
 
 There is no limit on the number of statements that can appear in the body, but there must be at least one. Occasionally, it is useful to have a body with no statements (usually as a place holder for code you haven't written yet). In that case, you can use the pass statement, which does nothing.
 
-
 ```{pyodide}
 #| autorun: false
 #| startover: false
@@ -258,7 +242,7 @@ if x == 5 :
 
 A second form of the if statement is alternative execution, in which there are two possibilities and the condition determines which one gets executed.
 
-```
+```{raw}         
 if condition is True :
     do the magic here
 else :
@@ -284,7 +268,7 @@ y = x
 
 Sometimes there are more than two possibilities and we need more than two branches. One way to express a computation like that is a chained conditional:
 
-```
+```{raw}         
 if condition is True :
     do the magic here
 elif other conditon is True :
@@ -326,8 +310,8 @@ elif x == y: # <- pay attention here
 ## Nested conditionals
 
 One conditional can also be nested within another. We could have written the three-branch example like this:
-    
-```
+
+```{raw}         
 if condition is True :
     do the magic here
 else :
@@ -335,7 +319,7 @@ else :
         do the other magic here
     else :
         do some other stuff
-```  
+```
 
 The outer conditional contains two branches. The first branch contains a simple statement. The second branch contains another if statement, which has two branches of its own.
 
@@ -356,7 +340,14 @@ else:
 
 ## Exceptions: `try` and `except`
 
-Consider the followign code:
+Consider the following code:
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+mock_input = StringIO("...\n")
+sys.stdin = mock_input
+```
 
 ```{pyodide}
 #| autorun: false
@@ -376,9 +367,7 @@ But what happens if you type anything else than a numeber? For example, `sixty` 
 
 There is a conditional execution structure built into Python to handle these types of expected and unexpected errors called "try / except". The idea of `try` and `except` is that you know that some sequence of instruction(s) may have a problem and you want to add some statements to be executed if an error occurs. These extra statements (the except block) are ignored if there is no error.
 
-
-```
-
+```{raw}       
 try:
 
     [the code you want to run]
@@ -388,8 +377,14 @@ except:
     [the code that will run if the one above does not work]
 ```
 
+Try to rewrite the code above using the `try` and `except`. Make sure that your code prints `Please enter a number` if the user types something else than a number.
 
-Try to rewrite the code above using the `try` and `except`. Make sure that your code prints `Please enter a number` if the user types something else than a number. 
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+mock_input = StringIO("...\n")
+sys.stdin = mock_input
+```
 
 ```{pyodide}
 #| autorun: false
@@ -411,10 +406,9 @@ except:
 
 Computers are often used to automate repetitive tasks. Repeating identical or similar tasks without making errors is something that computers do well and people do poorly.
 
-One form of iteration in Python is the while statement. 
+One form of iteration in Python is the while statement.
 
 Here is a simple program that counts down from five and then says "Blastoff!".
-
 
 ```{pyodide}
 #| autorun: false
@@ -431,26 +425,23 @@ print('Blastoff!')
 
 The flow of execution for a while statement is as follows:
 
-1. Evaluate the condition, yielding True or False.
+1.  Evaluate the condition, yielding True or False.
 
-2. If the condition is false, exit the while statement and continue execution at the next statement.
+2.  If the condition is false, exit the while statement and continue execution at the next statement.
 
-3. If the condition is true, execute the body and then go back to step 1.
+3.  If the condition is true, execute the body and then go back to step 1.
 
+This type of flow is called a **loop** because the third step loops back around to the top. We call each time we execute the body of the loop an **iteration**. The loop above has five iterations.
 
-This type of flow is called a **loop** because the third step loops back around to the top. We call each time we execute the body of the loop an **iteration**. 
-The loop above has five iterations.
-
-The body of the loop should change the value of one or more variables so that eventually the condition becomes false and the loop terminates. We call the variable that changes with each iteration the **iteration variable**. 
+The body of the loop should change the value of one or more variables so that eventually the condition becomes false and the loop terminates. We call the variable that changes with each iteration the **iteration variable**.
 
 If there is no iteration variable, the loop will repeat forever, resulting in an infinite loop.
 
 ### `break`
 
-
 The loop below an infinite loop because the logical expression on the while statement is simply the logical constant True:
 
-```
+```{raw}         
 n = 10
 while True:
     print(n, end=' ')
@@ -463,6 +454,13 @@ If you try to run it, it will run forever (if you lready have, go to `Kernel` me
 However, we can still use this pattern to build a useful loops as long as we add `break` to the body of the loop. It literally breaks the loop when we have reached the exit condition.
 
 For example, the loop below will run until the user types `done` in the prompt.
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+mock_input = StringIO("...\n")
+sys.stdin = mock_input
+```
 
 ```{pyodide}
 #| autorun: false
@@ -482,7 +480,14 @@ print('Done!')
 
 Sometimes you are in an iteration of a loop and want to finish the current iteration and immediately jump to the next iteration. In that case you can use the continue statement to skip to the next iteration without finishing the body of the loop for the current iteration.
 
-Here is an extesnion of the previous code that copies its input until the user types "done", but treats lines that start with the hash character as lines not to be printed (like Python comments). Try to run it.
+Here is an extension of the previous code that copies its input until the user types "done", but treats lines that start with the hash character as lines not to be printed (like Python comments). Try to run it.
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+mock_input = StringIO("...\n")
+sys.stdin = mock_input
+```
 
 ```{pyodide}
 #| autorun: false
@@ -504,10 +509,9 @@ All the lines are printed except the one that starts with the hash sign because 
 
 ### `for` loops
 
-When we want to loop through a set of things such as a list of words, the lines in a file, or a list of numbers. When we have such a list of things to loop through, we can construct another type of loop using a `for` statement.  
-We call the `while` statement an `indefinite` loop - it simply loops until some condition becomes False.  
+When we want to loop through a set of things such as a list of words, the lines in a file, or a list of numbers. When we have such a list of things to loop through, we can construct another type of loop using a `for` statement.\
+We call the `while` statement an `indefinite` loop - it simply loops until some condition becomes False.\
 We call the `for` loop a `definite` loop - it is loops through a known set of items so it runs through as many iterations as there are items in the set. Once it arrives to the end of the set, it stops.
-
 
 ```{pyodide}
 #| autorun: false
@@ -521,8 +525,7 @@ print('Done!')
 
 ```
 
-
-`friends` is a list - a set of three strings (we will talk about lists next week). 
+`friends` is a list - a set of three strings (we will talk about lists next week).
 
 The `for` loop goes through the list and executes the body once for each of the elements in the list.
 
@@ -536,13 +539,15 @@ Often we use a `for` or `while` loop to go through a list of items or the conten
 
 Loops are generally constructed according to this paterrn:
 
-    1. Initialize one or more variables before the loop starts
+```{raw}         
+1. Initialize one or more variables before the loop starts
 
-    2. Perform some computation on each item in the loop body 
-        a. possibly change the variables in the body of the loop
+2. Perform some computation on each item in the loop body 
+    a. possibly change the variables in the body of the loop
 
-    3. Look at the resulting variables when the loop completes
-    
+3. Look at the resulting variables when the loop completes
+```
+
 For example, a simple loop counting elements of a list would look like this:
 
 ```{pyodide}
@@ -563,7 +568,6 @@ print('Count: ', count)
 
 ```
 
-
 ```{pyodide}
 #| autorun: false
 #| startover: false
@@ -574,12 +578,11 @@ print('Count: ', count)
 ```
 
 
+::: disclaimer
+<p><strong>Images and GIFs Disclaimer:</strong> Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.</p>
+:::
 
-![**On completing another Python class!**](gif/congrats.webp){fig-align="left" width="700"}
-<div class="disclaimer">
-  <p><strong>Images and GIFs Disclaimer:</strong> Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.</p>
-</div>
-
+```{=html}
 <style>
 .disclaimer {
   font-size: 0.8em;
@@ -589,9 +592,7 @@ print('Count: ', count)
   margin-top: 20px;
 }
 </style>
-
-
-
+```
 
 ```{=html}
 <div>

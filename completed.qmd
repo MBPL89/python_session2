@@ -1,12 +1,9 @@
 ---
-title: "2. Beyond the Basic [Pick the title you like]"
+title: "2. Beyond the Basic: Conditional and Iterations"
 author: "Dr. Piccoli"
 format: live-html
 pyodide:
   packages:
-    - numpy
-    - pandas
-    - matplotlib
     - seaborn
 editor_options: 
   chunk_output_type: console
@@ -54,31 +51,23 @@ editor_options:
 
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}} {{< include ./_extensions/r-wasm/live/_gradethis.qmd >}}
 
-# 3. Conditional operations
+```{pyodide}
+#| autorun: true
+#| startover: false
+#| edit: false
+#| runbutton: false
+#| echo: false
+import sys
+from io import StringIO
 
-![Coding is fun!!!](gif/coding_is_fun.gif){width="700"}
+```
+
+
+# 3. Conditional operations
 
 In this part of the course we will leverage the following resources:
 
 -   [Intro to Python book](https://automatetheboringstuff.com)
-
-::: {#custom-timer}
-```{r}
-#| echo: false
-library(countdown)
-countdown(
-  minutes = 5, 
-  seconds = 0, 
-  play_sound = TRUE,  # Play a sound when the timer finishes
-  warn_when = 180,    # Warn when 180 seconds are left
-  blink_colon = TRUE,
-  font_size = "1.5rem",  # Set smaller font size
-  start_immediately = FALSE,  # Start the timer automatically
-  color_background = "#f2f2f2",  # Neutral background color
-  color_border = "darkred"
-)
-```
-:::
 
 ```{=html}
 <style>
@@ -102,7 +91,7 @@ Run the expressions below and compare the outputs.
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
+
 5 == 5
 
 ```
@@ -112,7 +101,6 @@ Run the expressions below and compare the outputs.
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 5 == 6
 
 ```
@@ -121,7 +109,7 @@ A boolean expression is an expression that is either true or false. True and Fal
 
 Below is the list of all the comparison operators:
 
-```         
+```{raw}         
 x == y               # x is equal to y
 x != y               # x is not equal to y
 x > y                # x is greater than y
@@ -141,7 +129,6 @@ Attention!!! Do not confuse `=` (assignment operator) with `==` (comparison oper
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 x = 1
 
 ```
@@ -151,7 +138,6 @@ x = 1
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 x == 1
 
 ```
@@ -171,7 +157,6 @@ Finally, the `not` operator negates a boolean expression, so `not(x > y)` is tru
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 x = 5
 y = 10
 z = 8
@@ -183,7 +168,6 @@ z = 8
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 x >= 0 and y == 10
 
 ```
@@ -193,7 +177,6 @@ x >= 0 and y == 10
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 z is 8 or y == 8
 ```
 
@@ -202,7 +185,6 @@ z is 8 or y == 8
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 not(x > y)
 ```
 
@@ -210,7 +192,7 @@ not(x > y)
 
 In order to write useful programs, we almost always need the ability to check conditions and change the behavior of the program accordingly. If the logical condition is true, then the indented statement gets executed. If the logical condition is false, the indented statement is skipped.
 
-```         
+```{raw}         
 if condition is True :
     do the magic here
 ```
@@ -220,7 +202,6 @@ if condition is True :
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 if 2 == 2 :
     print('Genius!')
 
@@ -238,7 +219,6 @@ Print `Correct` if `y` is higher than 5
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 x = 5
 y = 10
 
@@ -253,7 +233,7 @@ There is no limit on the number of statements that can appear in the body, but t
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
+
 if x == 5 :
     pass   
 ```
@@ -262,7 +242,7 @@ if x == 5 :
 
 A second form of the if statement is alternative execution, in which there are two possibilities and the condition determines which one gets executed.
 
-```         
+```{raw}         
 if condition is True :
     do the magic here
 else :
@@ -276,7 +256,6 @@ Print "Correct" if y is higher than 5. Otherwise, print "Incorrect".
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 x = 5
 y = 10
 y = x
@@ -289,7 +268,7 @@ y = x
 
 Sometimes there are more than two possibilities and we need more than two branches. One way to express a computation like that is a chained conditional:
 
-```         
+```{raw}         
 if condition is True :
     do the magic here
 elif other conditon is True :
@@ -303,7 +282,7 @@ else :
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
+
 if x < y:
     print('x is less than y')
 elif x > y:
@@ -319,7 +298,6 @@ There is no limit on the number of elif statements. If there is an else clause, 
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 if x < y:
     print('x is less than y')
 elif x > y:
@@ -333,7 +311,7 @@ elif x == y: # <- pay attention here
 
 One conditional can also be nested within another. We could have written the three-branch example like this:
 
-```         
+```{raw}         
 if condition is True :
     do the magic here
 else :
@@ -350,7 +328,6 @@ The outer conditional contains two branches. The first branch contains a simple 
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 if x == y:
     print('x and y are equal')
 else:
@@ -363,14 +340,21 @@ else:
 
 ## Exceptions: `try` and `except`
 
-Consider the followign code:
+Consider the following code:
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+mock_input = StringIO("...\n")
+sys.stdin = mock_input
+```
 
 ```{pyodide}
 #| autorun: false
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
+
 inp = input('Enter Fahrenheit Temperature: ')
 fahr = float(inp)
 cel = (fahr - 32.0) * 5.0 / 9.0
@@ -383,8 +367,7 @@ But what happens if you type anything else than a numeber? For example, `sixty` 
 
 There is a conditional execution structure built into Python to handle these types of expected and unexpected errors called "try / except". The idea of `try` and `except` is that you know that some sequence of instruction(s) may have a problem and you want to add some statements to be executed if an error occurs. These extra statements (the except block) are ignored if there is no error.
 
-```         
-
+```{raw}       
 try:
 
     [the code you want to run]
@@ -398,10 +381,16 @@ Try to rewrite the code above using the `try` and `except`. Make sure that your 
 
 ```{pyodide}
 #| autorun: false
+#| min-lines: 3
+mock_input = StringIO("...\n")
+sys.stdin = mock_input
+```
+
+```{pyodide}
+#| autorun: false
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 inp = input('Enter Fahrenheit Temperature: ')
 try:
     
@@ -426,7 +415,6 @@ Here is a simple program that counts down from five and then says "Blastoff!".
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 n = 5
 while n > 0:
     print(n)
@@ -443,7 +431,6 @@ The flow of execution for a while statement is as follows:
 
 3.  If the condition is true, execute the body and then go back to step 1.
 
-
 This type of flow is called a **loop** because the third step loops back around to the top. We call each time we execute the body of the loop an **iteration**. The loop above has five iterations.
 
 The body of the loop should change the value of one or more variables so that eventually the condition becomes false and the loop terminates. We call the variable that changes with each iteration the **iteration variable**.
@@ -454,7 +441,7 @@ If there is no iteration variable, the loop will repeat forever, resulting in an
 
 The loop below an infinite loop because the logical expression on the while statement is simply the logical constant True:
 
-```         
+```{raw}         
 n = 10
 while True:
     print(n, end=' ')
@@ -470,10 +457,16 @@ For example, the loop below will run until the user types `done` in the prompt.
 
 ```{pyodide}
 #| autorun: false
+#| min-lines: 3
+mock_input = StringIO("...\n")
+sys.stdin = mock_input
+```
+
+```{pyodide}
+#| autorun: false
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 while True:
     line = input('> ')
     if line == 'done':
@@ -487,14 +480,20 @@ print('Done!')
 
 Sometimes you are in an iteration of a loop and want to finish the current iteration and immediately jump to the next iteration. In that case you can use the continue statement to skip to the next iteration without finishing the body of the loop for the current iteration.
 
-Here is an extesnion of the previous code that copies its input until the user types "done", but treats lines that start with the hash character as lines not to be printed (like Python comments). Try to run it.
+Here is an extension of the previous code that copies its input until the user types "done", but treats lines that start with the hash character as lines not to be printed (like Python comments). Try to run it.
+
+```{pyodide}
+#| autorun: false
+#| min-lines: 3
+mock_input = StringIO("...\n")
+sys.stdin = mock_input
+```
 
 ```{pyodide}
 #| autorun: false
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 while True:
     line = input('> ')
     if line[0] == '#':
@@ -519,7 +518,6 @@ We call the `for` loop a `definite` loop - it is loops through a known set of it
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 friends = ['Rachel','Monica','Phoebe','Joey', 'Ross', 'Chandler']
 for friend in friends:
     print('Hello ', friend)
@@ -541,7 +539,7 @@ Often we use a `for` or `while` loop to go through a list of items or the conten
 
 Loops are generally constructed according to this paterrn:
 
-```         
+```{raw}         
 1. Initialize one or more variables before the loop starts
 
 2. Perform some computation on each item in the loop body 
@@ -557,7 +555,6 @@ For example, a simple loop counting elements of a list would look like this:
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 # 1. Initialize one or more variables before the loop starts
 count = 0
 
@@ -576,12 +573,10 @@ print('Count: ', count)
 #| startover: false
 #| min-lines: 3
 #| completion: true
-#| persist: true
 #Extra practice chunk
 
 ```
 
-![**On completing another Python class!**](gif/congrats.webp){fig-align="left" width="700"}
 
 ::: disclaimer
 <p><strong>Images and GIFs Disclaimer:</strong> Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.</p>
