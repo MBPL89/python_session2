@@ -16,9 +16,9 @@ website:
         - p3-conditional-iteration-solved.qmd
       # - href: https://omis482-f2024-class-website.netlify.app #add your website
       #   text: Go to the Course Website
-  drafts:
-    - p3-conditional-iteration-solved.qmd
-  draft-mode: gone
+  #drafts:
+  #  - p3-conditional-iteration-solved.qmd
+  #draft-mode: gone
 
 format:
   html:
